@@ -1,0 +1,13 @@
+Package: R.openFEC
+Title: R Package for Open FEC Data
+Version: 0.0.0.9000
+Authors@R: c(person("Jeff", "Carney", email = "jeffrey.carney@pomona.edu", role = c("aut", "cre")), person("Robin", "Pollak", email = "robin@pollak.io", role = c("aut")))
+Description: This package serves as an R wrapper for the Open FEC data provided here: https://api.open.fec.gov/developers/. A full list of functions and query parameters for each function can be found at that link. 
+Depends: R (>= 3.4.1)
+License: V0.0.1
+Encoding: UTF-8
+LazyData: true
+Imports:
+    httr,
+    jsonlite
+RoxygenNote: 6.0.1
