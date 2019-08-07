@@ -9,7 +9,7 @@
 #' @examples
 #' get_filings_for_candidate("P60019015", "YOUR_API_KEY_HERE")
 get_filings_for_candidate <- function(candidate_id, api_key, query_params = list()){
-  fec_api(path = "/candidate/", candidate_id, "/filings/", api_key = api_key, query_params = query_params)
+  fec_api(path = paste("/candidate", candidate_id, "filings/", sep="/"), api_key = api_key, query_params = query_params)
 }
 
 #' Get FEC Filings for a Committee
@@ -21,9 +21,9 @@ get_filings_for_candidate <- function(candidate_id, api_key, query_params = list
 #' @keywords committee filings
 #' @export
 #' @examples
-#' get_filings_for_candidate("C00381442", "YOUR_API_KEY_HERE")
+#' get_filings_for_committee("C00381442", "YOUR_API_KEY_HERE")
 get_filings_for_committee <- function(committee_id, api_key, query_params = list()){
-  fec_api(path = "/committee/", committee_id, "/filings/", api_key = api_key, query_params = query_params)
+  fec_api(path =  paste("/committee", committee_id, "filings/", sep="/"), api_key = api_key, query_params = query_params)
 }
 
 #' Get FEC Filings based on Query Params

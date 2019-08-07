@@ -8,27 +8,29 @@
 #' @export
 #' @examples
 #' fec_api("/candidates/", "YOUR_API_KEY_GOES_HERE", query_params = list(q = c("Obama")))
+
 fec_api <- function(path, api_key, query_params = list()){
-  url <- modify_url("https://api.open.fec.gov", path = paste("/v1", path, sep = ""), query = c(list(api_key=api_key), query_params))
+  url <- modify_url("https://api.open.fec.gov", path = paste("/v1", path, sep="/"), query = c(list(api_key=api_key), query_params))
+  url
   resp <- GET(url)
-  
+
   if (status_code(resp) != 200) {
     stop(
       sprintf(
-        "Open FEC API request failed [%s]\n%s\n<%s>", 
+        "Open FEC API request failed [%s]\n%s\n<%s>",
         status_code(resp),
         resp$response
       ),
       call. = FALSE
     )
   }
-  
+
   if (http_type(resp) != "application/json"){
     stop("API did not return json", call. = FALSE)
   }
-  
+
   parsed <- jsonlite::fromJSON(content(resp, "text", encoding="UTF-8"), simplifyVector = FALSE)
-  
+
   structure(
     list(
       content = parsed,
